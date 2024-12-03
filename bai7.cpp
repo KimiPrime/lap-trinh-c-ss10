@@ -16,18 +16,19 @@ int main() {
     }
 
     for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m - 1; j++) {
-            for (int k = j + 1; k < m; k++) {
-                if (arr[i][j] > arr[i][k]) {
-                    int temp = arr[i][j];
-                    arr[i][j] = arr[i][k];
-                    arr[i][k] = temp;
-                }
+        for (int j = 1; j < m; j++) {
+            int key = arr[i][j];
+            int k = j - 1;
+
+            while (k >= 0 && arr[i][k] > key) {
+                arr[i][k + 1] = arr[i][k];
+                k--;
             }
+            arr[i][k + 1] = key;
         }
     }
 
-    printf("Mang sau khi sap xep:\n");
+    printf("Ma tran sau khi sap xep theo dong:\n");
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
             printf("%d ", arr[i][j]);
